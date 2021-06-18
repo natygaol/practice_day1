@@ -13,4 +13,5 @@ end
 
 edutechional_1 = EdutechionalResty.new
 
+p edutechional_1
 puts edutechional_1.posts
