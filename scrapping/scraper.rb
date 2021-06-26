@@ -25,5 +25,15 @@ def fetch_movies_url
 end
 
 def scrape_movie(url)
+  # 1. Abro la url que quiero scrapear y la parseo con Nokogiri
+  html_file = URI.open(url).read
+  html_doc = Nokogiri::HTML(html_file)
+
+  # 2. Busco: title, year, cast, director, storyline
+
+  html_doc.search('.standard-card-new__article-title').each do |element|
+    puts element.text.strip
+    puts element.attribute('href').value
+  end
 end
 

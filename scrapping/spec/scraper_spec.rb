@@ -1,5 +1,6 @@
-require_relative '../web_scrapping'
+require_relative '../scraper'
 require 'spec_helper'
+require 'yaml'
 
 describe "fetch_movies_url" do
   it "Return an array of movies" do
