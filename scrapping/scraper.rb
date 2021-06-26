@@ -30,10 +30,15 @@ def scrape_movie(url)
   html_doc = Nokogiri::HTML(html_file)
 
   # 2. Busco: title, year, cast, director, storyline
+  title = html_doc.search('h1').first.text.strip
+  year = html_doc.search('#titleYear a').first.text.strip
 
-  html_doc.search('.standard-card-new__article-title').each do |element|
+
+  html_doc.search('h1').each do |element|
     puts element.text.strip
     puts element.attribute('href').value
   end
+  # 3. Devuelvo un hash con la estructura de JSON
+
 end
 
