@@ -1,3 +1,5 @@
+require_relative '../web_scrapping'
+
 describe "fetch_movies_url" do
   it "Return an array of movies" do
     # guardamos el resultado del método en una variable
@@ -12,17 +14,18 @@ describe "fetch_movies_url" do
     expect(urls).to eq(expected)  
   end
   
-  describe "scrape_movie" do
+describe "scrape_movie" do
     it "Return the detailed data from the selected movie" do
+      movie_data = scrape_movie("https://www.imdb.com/title/tt0111161/")
+      
       expected = {
-        cast: [ "", "", "" ],
-        director: "",
-        storyline: "",
-        title: "",
-        year: 2000
+        cast: [ "Tim Robbins", "Morgan Freeman", "Bob Gunton" ],
+        director: "Frank Darabont",
+        storyline: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+        title: "The Shawshank Redemption",
+        year: 1994
       }
 
-      movie_data = scrape_movie("https://www.imdb.com/title/tt0111161/")
       expect(movie_data).to eq(expected)
     end
   end
