@@ -9,7 +9,7 @@ require 'nokogiri'
 def fetch_movies_url
   # Abrir la url  
   url = "https://www.imdb.com/chart/top"
-  html_file = URI.open(url).read
+  html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
   
   # Buscar los href de las 5 primeras peliculas desde el href 
@@ -26,7 +26,7 @@ end
 
 def scrape_movie(url)
   # 1. Abro la url que quiero scrapear y la parseo con Nokogiri
-  html_file = URI.open(url).read
+  html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
 
   # 2. Busco: title, year, director, storyline, cast
@@ -35,13 +35,17 @@ def scrape_movie(url)
   director = html_doc.search('.credit_summary_item a').first.text.strip
   storyline = html_doc.search('#titleStoryLine div.inline.canwrap span').first.text.strip
   cast = []
-  
-
-  html_doc.search('h1').each do |element|
-    puts element.text.strip
-    puts element.attribute('href').value
+  cast_div = html_doc.search("credit_summary_item").last
+  cast_div.search("a").first(3).each do |star|
+    cast << star.text.strip
   end
   # 3. Devuelvo un hash con la estructura de JSON
-
+  hash = {
+    title: title,
+    year: year,
+    director: director,
+    storyline: storyline,
+    cast: cast
+  }
 end
 
