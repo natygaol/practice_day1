@@ -23,7 +23,7 @@ describe "scrape_movie" do
       expected = {
         cast: [ "Tim Robbins", "Morgan Freeman", "Bob Gunton" ],
         director: "Frank Darabont",
-        storyline: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+        storyline: "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",
         title: "The Shawshank Redemption",
         year: 1994
       }

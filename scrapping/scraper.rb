@@ -29,10 +29,13 @@ def scrape_movie(url)
   html_file = URI.open(url).read
   html_doc = Nokogiri::HTML(html_file)
 
-  # 2. Busco: title, year, cast, director, storyline
+  # 2. Busco: title, year, director, storyline, cast
   title = html_doc.search('h1').first.text.strip
   year = html_doc.search('#titleYear a').first.text.strip
-
+  director = html_doc.search('.credit_summary_item a').first.text.strip
+  storyline = html_doc.search('#titleStoryLine div.inline.canwrap span').first.text.strip
+  cast = []
+  
 
   html_doc.search('h1').each do |element|
     puts element.text.strip
